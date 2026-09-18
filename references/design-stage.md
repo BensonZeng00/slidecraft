@@ -6,7 +6,19 @@ This is the normal single-slide design route. No PPT construction manuals are ne
 
 Save exact words, values/units, sources and relationship endpoints in a brief. Verify specialist/current claims; distinguish facts from visual metaphors. Infer routine design choices, asking only about material gaps. Use the user's language, Chinese if unspecified; no invented statistics. Explain that complex illustrations normally remain replaceable images, not internally editable geometry.
 
-Let the image model choose composition, illustration and effects unless the user specifies them. Do not force a template, coordinates or flat styling merely to ease reconstruction. A short prompt needs topic, audience, canvas, exact content, relationships, coherent attractive design and readable text. Art direction comes from user/context. Generate an actual infographic, not a coded placeholder.
+### Choose and announce the visual style before generation
+
+Read the user's prompt, supplied materials/reference images and conversation context to choose a visual direction before calling image generation. Consider the topic, audience, intended use, tone, information density and content relationships together; do not map a topic keyword mechanically to a preset (for example, technology need not mean neon blue).
+
+Honor explicit style requests and brand constraints first, then user-selected visual references and an established deck style. Infer unspecified choices from the communication goal. A reference supplied for content alone is not automatically a style reference. When context is sparse, choose a restrained, readable direction suited to the available content and label it as your choice, not a stated user preference. Ask only when conflicting requirements or a material gap prevents a useful decision.
+
+Before the first generation call, tell the user in their language, in one or two sentences: the chosen style, the input/context that supports it, and concrete visual traits such as palette, typography/hierarchy, illustration treatment and information density. For example: “根据你提到的‘面向管理层汇报’和这页的对比数据，我会采用简洁的商务信息图风格：浅底、深色标题、单一强调色，以对比图表突出结论。” Tailor the explanation to the actual request rather than repeating this example. This is an announcement, not a new approval gate; proceed unless clarification is necessary or the user requested approval first.
+
+Record the chosen direction and its basis in the working brief, and include the same art direction in the image-generation prompt. Let the image model explore composition, illustration details and effects within that direction unless the user specifies them. For later deck pages, reuse the shared style and briefly state the current page's treatment; announce any changed direction before generating a revision. When resuming an unchanged, already-generated design, present it without regenerating merely to satisfy this step.
+
+Do not force a template, coordinates or flat styling merely to ease reconstruction. A short prompt needs topic, audience, canvas, exact content, relationships, the announced art direction and readable text. Generate an actual infographic, not a coded placeholder.
+
+### Generate within the page budget
 
 Announce one expected reference and at most three calls per page including edits/extraction, or the user's lower cap. Stop after a usable reference. Extra scope/budget requires agreement; do not infer costs. In a deck, release calls only for the current page after outline and previous-page approval.
 

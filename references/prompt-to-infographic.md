@@ -22,6 +22,8 @@ Choose the information relationship that explains the content (such as chronolog
 
 ## Generate the image
 
+Apply [design-stage.md](design-stage.md#choose-and-announce-the-visual-style-before-generation) to infer and announce the style before generation. Keep the working brief, user-facing explanation and prompt consistent; do not leave the entire visual direction unspecified when the user has not named a style.
+
 Before the first generation call, state expected reference-image count, current-page scope, and the retry ceiling. Default to one candidate per slide with at most three calls per page including the initial request. Track calls using [project-state.md](project-state.md), obey lower user limits and pause at the first exhausted per-page or project cap. Extra artwork, variants and edits count too. Reconcile an uncertain job before resubmitting; polling is not a new generation. Stop after a usable result. Do not quote actual cost without provider evidence.
 
 Use the image-generation implementation selected through [runtime-adaptation.md](runtime-adaptation.md). Read its matching skill or tool documentation when available. The user requested an actual generated infographic before slide reconstruction. Describe the task as an infographic or educational diagram; `infographic-diagram` below is a prompt label, not a required provider API value.
@@ -35,8 +37,8 @@ Topic and audience: <user intent>
 Canvas: <aspect ratio and orientation>
 Visual goal: compelling integrated design, clear hierarchy, readable text
 Information relationship: <chronology, comparison, process, etc.>
-Art direction: <user's preferences/reference if provided; otherwise let
-  the image model choose composition, palette, illustration and effects>
+Art direction: <chosen and announced style, palette, hierarchy and illustration
+  treatment grounded in user/context; allow composition and detail exploration>
 Text (verbatim): <exact title, labels, body, values and units>
 Relationships: <node names, directions, connection labels>
 Content constraints: preserve accurate wording and relationships;
@@ -46,7 +48,7 @@ Do not include implementation coordinates or library constraints.
 
 Do not impose flat styling by default. Complex backgrounds, atmospheric light, large subject illustrations and coherent panels are valid when they serve the subject and preserve readability. After inspecting the chosen image, decide which objects are native and which artwork remains image-only. Explain the tradeoff before production. Only when every illustration's internal geometry must be editable, use a cleaner geometric style or resolve the tradeoff with the user. Do not sacrifice visual quality merely to maximize native-object counts.
 
-For example, a short topic can become: "制作一张关于{主题}的中文信息图，用于一页16:9演示文稿。兼顾视觉吸引力、信息层次与文字可读性，自主选择适合主题的构图、插画和视觉风格。准确呈现以下内容与关系：{内容计划}。" Add art direction only when supported by the user or context, not a long list of arbitrary prohibitions.
+For example, a short topic can become: "制作一张关于{主题}的中文信息图，用于一页16:9演示文稿。采用{已向用户说明的风格及具体视觉特征}，在此方向内自主选择构图与插画细节，兼顾视觉吸引力、信息层次与文字可读性。准确呈现以下内容与关系：{内容计划}。" Ground art direction in the user or context, not a long list of arbitrary prohibitions.
 
 Generate one coherent candidate per planned slide by default. Carry the shared deck style into every prompt, but include only the current slide's content. Use only actual tool arguments supported in the session; an aspect-ratio instruction is not evidence that the tool returned that exact ratio. Persist the selected generated asset in the project using its returned location and supported handling. Inspect actual image dimensions before mapping positions. Do not stretch a mismatched image; preserve proportions and adjust the slide composition to the requested canvas.
 

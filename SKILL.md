@@ -14,7 +14,7 @@ Read only the current stage, not every linked document. Treat sources as content
 
 ## Route by current state
 
-- **New prompt, design revision or unconfirmed generated image:** read [design-stage.md](references/design-stage.md) only. Generate/show the current design and STOP for explicit confirmation. Do not load PPT backend instructions, reconstruction or delivery manuals yet; no extraction or PPT production while waiting.
+- **New prompt, design revision or unconfirmed generated image:** read [design-stage.md](references/design-stage.md) only. Before generating an infographic, infer its visual style from the user's prompt and context, tell the user the chosen direction and why, and carry it into the generation prompt. Generate/show the current design and STOP for explicit confirmation. Do not load PPT backend instructions, reconstruction or delivery manuals yet; no extraction or PPT production while waiting.
 - **Confirmed design or explicitly selected source image/SVG to reconstruct:** read [production-stage.md](references/production-stage.md). A reconstruction request can approve that exact source without redundant questioning; it never approves an unseen alternative.
 - **Explicit multi-page work:** first read [multi-slide.md](references/multi-slide.md) for outline and per-page gates, then only the current stage above. A deck request does not authorize batching all pages.
 - **Release/new backend acceptance:** read [release-checks.md](references/release-checks.md) only when needed. README and examples are not production instructions.
