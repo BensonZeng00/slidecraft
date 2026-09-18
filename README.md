@@ -37,7 +37,7 @@
 
 ![新品上线汇报：实际 PPT 效果](examples/case03/preview.png)
 
-[下载可编辑 PPT](examples/case03/editable.pptx) · [提示词与传播文案](examples/case03/prompt-and-copy.md)
+[下载可编辑 PPT](examples/case03/editable.pptx)
 
 *项目与数据为虚构演示；“互联网大厂风格”不代表任何公司的官方模板。*
 
@@ -49,7 +49,7 @@
 
 ![AI 发展史：实际 PPT 效果](examples/case04/preview.png)
 
-[下载可编辑 PPT](examples/case04/editable.pptx) · [提示词与传播文案](examples/case04/prompt-and-copy.md) · [内容来源](examples/case04/sources.md)
+[下载可编辑 PPT](examples/case04/editable.pptx) · [内容来源](examples/case04/sources.md)
 
 *精选里程碑，非完整年表；人物与场景为 AI 示意图，非历史照片。*
 
@@ -60,14 +60,10 @@
 项目地址：[BensonZeng00/slidecraft](https://github.com/BensonZeng00/slidecraft)。推荐在支持自定义 Skill、能够访问 GitHub 的 AI 助手中，直接发送：
 
 ```text
-请从 https://github.com/BensonZeng00/slidecraft 安装 slidecraft（幻灯匠）技能。
-仓库根目录就是技能目录，入口是 SKILL.md，请按当前平台支持的方式安装。
-检查生图、原生可编辑 PPTX 制作和 PPT 渲染能力，优先复用已有技能或工具。
-缺少能力时，按平台权限尝试安装合适的集成；无法完成时说明缺什么、需要我做什么。
-安装后告诉我如何调用，以及是否需要重新开启会话。
+安装技能：https://github.com/BensonZeng00/slidecraft
 ```
 
-幻灯匠提供设计与制作流程，不自带生图模型或 PPT 引擎。**技能安装成功后，还需要上述三项能力可用，才能完成从设计到交付的完整流程。** 各平台的安装入口、权限和可用工具不同，不能保证所有应用都能直接运行。
+幻灯匠需配合平台已有的生图、可编辑 PPT 制作和渲染工具使用，不自带生图模型或 PPT 引擎。
 
 ### 手动安装（可选）
 
@@ -77,7 +73,7 @@
 - **使用 Git**：在当前平台支持的技能父目录中运行下列命令。技能目录的位置以该平台说明为准。
 
 ```bash
-git clone https://github.com/BensonZeng00/slidecraft.git slidecraft
+git clone https://github.com/BensonZeng00/slidecraft.git
 ```
 
 安装后的目录结构应为 `slidecraft/SKILL.md`，并保留 `references/`、`scripts/` 等配套文件，不要只复制入口文件。按平台提示刷新技能列表或重新开启会话，再选择 `slidecraft`，也可以在请求中明确写“使用幻灯匠”。
