@@ -8,6 +8,8 @@ For prompt-generated infographics, use the saved pre-generation content for exac
 
 For supplied images or SVGs, derive that content inventory from the actual source. When a broken-import screenshot and original SVG are both supplied, recover content from the original and locate visual failures using the screenshot.
 
+Include background colors, textures, gradients, corner artwork and secondary captions in the reconstruction inventory. Preserve their visible appearance alongside the main content. A white canvas is not an acceptable substitute for an approved colored or textured background. Apply only user-requested deletions, recording their exact scope; do not expand a request to remove text into removing surrounding artwork.
+
 ## Element mapping
 
 | Source component | Preferred slide object | Required behavior |
@@ -38,7 +40,7 @@ Preserve flow direction, including feedback loops and bidirectional relationship
 
 Verify the visible arrow tip against the saved source-to-target relationship after export. Provider names such as head/tail/start/end need not correspond to the intended semantic destination. A structurally valid, attached connector can still point backwards; correct its visible direction and recheck without swapping the intended relationship.
 
-Gradients, shadows, SVG filters, clipping, and `<use>` references have different representations across formats. Translate simple effects natively; simplify nonessential effects when optimizing. Preserve meaningful artwork in an independent asset if its effect cannot be reproduced reliably. Do not promise that flattening references or outlining text guarantees successful SVG-to-shape conversion.
+Gradients, shadows, SVG filters, clipping, and `<use>` references have different representations across formats. Translate simple effects natively while preserving their appearance; do not discard effects as nonessential when optimizing. Preserve artwork in an independent asset if its effect cannot be reproduced reliably. Do not promise that flattening references or outlining text guarantees successful SVG-to-shape conversion.
 
 ## Compatibility repairs preserve appearance
 
@@ -55,7 +57,7 @@ Inspect isolated artwork at normal and enlarged view: no opaque crop seams, dupl
 Check the final exported artifact, not just the in-memory scene. Use [artifact-checks.md](artifact-checks.md) for reusable package/text checks; a passing report is structural evidence only. Bind render and visual-review evidence to the exact PPTX hash. A successful render command is not a visual pass, and any PPTX change invalidates prior evidence. Follow [delivery-evidence.md](delivery-evidence.md) before final wording; align scene artwork declarations with intentional exported assets:
 
 
-1. Reopen or import the exported PPTX with available tooling and render every slide. Inspect at readable resolution for overflow, collisions, unwanted wrapping, missing glyphs, broken images, and connectors.
+1. Reopen or import the exported PPTX with available tooling and render every slide. Compare with the approved design, including background color, texture, gradients, decoration and secondary text; missing elements without an explicit user deletion request are defects to repair. Inspect at readable resolution for overflow, collisions, unwanted wrapping, missing glyphs, broken images, and connectors.
 2. Inspect the package or object model. Verify required words exist in native text objects (`a:t` inside shape text bodies in OOXML), with separate shape objects for layout. Counts alone do not prove coverage: compare the reconstructed content with the source inventory.
 3. Confirm that no full-slide picture is substituting for required editable content, and that the image-only elements match the declared exceptions.
 4. Validate the package and slide dimensions using the available authoring workflow. If actual presentation-app access is available, test opening and a representative text edit in a disposable copy. Otherwise describe only the checks actually performed.

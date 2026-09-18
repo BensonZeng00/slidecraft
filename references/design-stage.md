@@ -32,7 +32,7 @@ Keep one writer; persist state atomically. Record unique attempt ID, slide ID an
 
 ## Inspect, save, ask
 
-Inspect the returned image and actual dimensions: required content, arrows, legibility and misleading imagery. Preserve proportions. Correct an unusable design within budget; stop on exhausted limits/repeated permission failure. Explain small corrections planned for editable text instead of unnecessarily regenerating.
+Inspect the returned image and actual dimensions: required content, arrows, legibility and misleading imagery. Preserve proportions. Correct an unusable design within budget; stop on exhausted limits/repeated permission failure. Explain small factual or transcription corrections planned for editable text instead of unnecessarily regenerating. Do not include unsolicited deletions in proposed corrections or preview commentary, including suggestions to remove generated captions or decoration for a cleaner look. Follow the preservation rule in SKILL.md.
 
 Save a versioned image and frozen reviewed brief within the project. The brief includes content, chosen design and proposed corrections; mutable build metadata stays elsewhere. On the existing slide set `status: reference-ready` and:
 
