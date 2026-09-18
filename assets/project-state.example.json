@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "project_id": "example-single-slide",
+  "mode": "single",
+  "total_slides": 1,
+  "generation": {"planned_images": 1, "max_calls_per_slide": 3, "max_calls_total": 3, "attempts": []},
+  "slides": [
+    {"id": "page-intro", "title": "Replace with the actual title", "revision": 1, "status": "planned", "design": null, "artifacts": {}, "checks": {"native": false, "render": false}, "approval": null}
+  ]
+}

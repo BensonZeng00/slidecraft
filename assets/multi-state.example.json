@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "project_id": "example-deck-awaiting-outline",
+  "mode": "multi",
+  "total_slides": 2,
+  "outline": {
+    "revision": 1,
+    "status": "awaiting-review",
+    "pages": [
+      {"id":"page-process","title":"制作流程","key_points":["先策划内容，再生成视觉参考，最后重建可编辑页面"]},
+      {"id":"page-review","title":"审阅方式","key_points":["完成当前页后确认，确认后才开始下一页"]}
+    ],
+    "approval": null
+  },
+  "generation": {"planned_images":2,"max_calls_per_slide":3,"max_calls_total":6,"attempts":[]},
+  "slides": [
+    {"id":"page-process","title":"制作流程","revision":1,"status":"planned","artifacts":{},"checks":{"native":false,"render":false},"approval":null},
+    {"id":"page-review","title":"审阅方式","revision":1,"status":"planned","artifacts":{},"checks":{"native":false,"render":false},"approval":null}
+  ]
+}
