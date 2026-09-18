@@ -4,9 +4,9 @@
 
 Before reconstruction, run the image-bound approval gate in [design-and-cli.md](design-and-cli.md). Reuse supported CLI operations for measured text preflight, building and verification; visual inspection remains required. Do not prepare a speculative PPT before the user confirms the design.
 
-For prompt-generated infographics, use the saved pre-generation content for exact wording, values, units, and relationships. Use the inspected generated image for composition, color, hierarchy, and artwork. Correct generated text errors and wrong arrows in the shared scene before export. Track required element IDs through the scene and native slide objects so verification can detect missing content, not only count objects.
+For both generated and supplied images, use the selected, approved image for exact visible wording, values, relationships and appearance. The generation prompt and earlier brief are provenance, not permission to overwrite visible source content. Inventory every element using the [fidelity contract](fidelity-contract.md), then derive the reconstruction plan from that frozen inventory. Preserve apparent typos, questionable arrows and extra generated captions unless the user explicitly requests the particular change. Put concerns in work notes, not unsolicited slide annotations. Track stable element IDs through the plan and native output.
 
-For supplied images or SVGs, derive that content inventory from the actual source. When a broken-import screenshot and original SVG are both supplied, recover content from the original and locate visual failures using the screenshot.
+When a broken-import screenshot and original SVG are both supplied, use the source the user selected as authoritative. An explicitly requested repair of a broken import restores that source, rather than changing the original design.
 
 Include background colors, textures, gradients, corner artwork and secondary captions in the reconstruction inventory. Preserve their visible appearance alongside the main content. A white canvas is not an acceptable substitute for an approved colored or textured background. Apply only user-requested deletions, recording their exact scope; do not expand a request to remove text into removing surrounding artwork.
 
@@ -22,7 +22,7 @@ Include background colors, textures, gradients, corner artwork and secondary cap
 
 Use native shapes for the requested diagram, not to invent decorative illustrations. Never cover a full-slide screenshot with a handful of text boxes and describe the entire diagram as editable.
 
-SVG paths and cropped pixel traces do not automatically become useful slide objects. Do not turn thousands of scanline paths into thousands of slide shapes. If the user requires every icon to be editable, use a clean native reconstruction or simplified contour geometry and disclose fidelity tradeoffs. Do not rasterize that requirement away.
+SVG paths and cropped pixel traces do not automatically become useful slide objects. Do not turn thousands of scanline paths into thousands of slide shapes. If the user requires every icon to be editable, use a faithful native reconstruction or explain the unavailable capability. Simplified contours require explicit permission for that visible change; full editability alone does not authorize it. Do not rasterize that requirement away.
 
 ## Typography and positioning
 
@@ -31,14 +31,14 @@ SVG paths and cropped pixel traces do not automatically become useful slide obje
 - Track source pixels, points, and the library's coordinate units explicitly. Convert once at the rendering boundary. In a 96-DPI CSS coordinate system, 1 px = 0.75 pt = 9525 EMU; verify the authoring API's units rather than assuming all APIs use pixels.
 - SVG `y` generally positions a baseline; native text boxes use a rectangular frame with margins. Account for baseline, line height, box insets, and vertical alignment. Do not copy the baseline directly into the box top.
 - Translate `text-anchor` into box position plus alignment. Centered text needs a deliberate box width, not only a centered paragraph setting.
-- Allocate room for actual wording, bold width, and the target font. Prefer resizing a frame or adding intentional line breaks to shrinking important text until it becomes unreadable.
-- Use explicit sizes and sensible overflow settings. Avoid automatic text fitting that produces inconsistent hierarchy. For an optimization request, adjust spacing and alignment without deleting substantive labels or metrics.
+- Match visible text extent and source line breaks. Adjust invisible text-frame margins or bounds to accommodate font metrics without moving, rewrapping or resizing the visible design. If the source font is unavailable, disclose the closest faithful substitution and verify it visually.
+- Use explicit sizes and sensible overflow settings. Avoid automatic fitting that changes the hierarchy. A general optimization request improves reconstruction accuracy, asset handling or the workflow; it does not authorize changed spacing, alignment, wording or hierarchy in the source design.
 
 ## Arrows and effects
 
-Preserve flow direction, including feedback loops and bidirectional relationships. When the authoring library supports attached connectors, use them for relationships expected to remain connected after a user moves a node. Otherwise disclose that independent arrows may need repositioning.
+Preserve the visible route, curvature, direction, endpoints, line weight and arrowheads, including apparent ambiguities, feedback loops and bidirectional relationships. Do not replace a curved timeline with straight rows, reroute it to a more logical node, or add reading-order labels unless explicitly requested. Use attached connectors only when they retain the source geometry; otherwise use faithful native paths and disclose that they may need repositioning after a node move.
 
-Verify the visible arrow tip against the saved source-to-target relationship after export. Provider names such as head/tail/start/end need not correspond to the intended semantic destination. A structurally valid, attached connector can still point backwards; correct its visible direction and recheck without swapping the intended relationship.
+Verify the rendered arrow tip against the source image, not against an inferred intended relationship. Provider names such as head/tail/start/end may differ. Fix an export that reverses the source arrow; preserve an arrow already pointing that way in the source.
 
 Gradients, shadows, SVG filters, clipping, and `<use>` references have different representations across formats. Translate simple effects natively while preserving their appearance; do not discard effects as nonessential when optimizing. Preserve artwork in an independent asset if its effect cannot be reproduced reliably. Do not promise that flattening references or outlining text guarantees successful SVG-to-shape conversion.
 
@@ -52,7 +52,7 @@ Do not replace semantic icons with numbers, remove arrows or redesign artwork me
 
 ## Verification
 
-Inspect isolated artwork at normal and enlarged view: no opaque crop seams, duplicated text baked into an asset, accidental background patches or clipped meaningful edges. Prefer an existing clean asset, supported mask/transparent extraction or authorized image editing; do not automatically buy another generation or silently simplify required artwork. Preserve original sources and disclose material visual compromises.
+Inspect isolated artwork at normal and enlarged view: no opaque crop seams, duplicated text, accidental background patches or clipped meaningful edges. Prefer deterministic source crops/masks over generative extraction that redraws the illustration. If text is removed from a working artwork layer, restore every removed label as native text at its original position, size and style; blank signs, screens and speech bubbles are not a faithful substitute. Asset isolation must preserve illustration details, proportions, texture and placement. A generative approximation must not be described as an exact extraction. Keep original sources unchanged.
 
 Check the final exported artifact, not just the in-memory scene. Use [artifact-checks.md](artifact-checks.md) for reusable package/text checks; a passing report is structural evidence only. Bind render and visual-review evidence to the exact PPTX hash. A successful render command is not a visual pass, and any PPTX change invalidates prior evidence. Follow [delivery-evidence.md](delivery-evidence.md) before final wording; align scene artwork declarations with intentional exported assets:
 

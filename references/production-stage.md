@@ -2,13 +2,13 @@
 
 Read after explicit design confirmation, or a request to reconstruct an identified supplied source. For that source route, inspect it, freeze its brief and record the actual request as approval for the exact file; no new image is needed. Use [design-stage.md](design-stage.md) only if the approval record schema is not already known. Missing approval returns to stage 1; never fabricate retrospective approval from a completed PPT.
 
-Before extraction or authoring run:
+First record the selected-image inventory and identical reconstruction plan using the [fidelity contract](fidelity-contract.md). This is read-only source inspection and needs no additional user confirmation. Legacy projects need this inventory, not invented approval or an output-derived baseline. Before extraction or authoring run:
 
 ```text
 python scripts/workflow.py reconstruct-check project-state.json --slide page-intro
 ```
 
-The gate checks outline/page progression, design revision, image/brief hashes and approval fields. The existing `validate_state.py --allow-produce` CLI delegates to it. Without Python perform equivalent host checks. Failed/stale approval stops dependent work. Design approval is not rendered-quality evidence.
+The gate checks outline/page progression, design revision, image/brief hashes, approval fields, the locked source inventory and unauthorized plan changes. The existing `validate_state.py --allow-produce` CLI delegates to it. Without Python perform equivalent host checks. Failed/stale approval stops dependent work. Missing fidelity records require source inspection; they do not justify re-asking approval for an unchanged source. Design approval is not rendered-quality or change-authorization evidence.
 
 ## Load in execution order
 

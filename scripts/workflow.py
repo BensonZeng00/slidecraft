@@ -33,12 +33,9 @@ def design_fingerprint(state, slide_id, root):
             "brief_sha256": digest_file(root, design.get("brief"))}
 
 
-def reconstruction_errors(state, slide_id, root):
-    errors = validate(state, root)
-    if not errors:
-        errors = production_errors(state, slide_id)
-    if errors:
-        return errors
+def design_approval_errors(state, slide_id, root):
+    """Reusable source approval check, also valid for already-rendered/approved deck pages."""
+    errors = []
     try:
         fingerprint = design_fingerprint(state, slide_id, root)
         slide = next(s for s in state["slides"] if s["id"] == slide_id)
@@ -52,6 +49,18 @@ def reconstruction_errors(state, slide_id, root):
                 errors.append(f"actual user approval {key} required")
     except (ValueError, OSError) as exc:
         errors.append(str(exc))
+    return errors
+
+
+def reconstruction_errors(state, slide_id, root):
+    errors = validate(state, root)
+    if not errors:
+        errors = production_errors(state, slide_id)
+    if not errors:
+        errors = design_approval_errors(state, slide_id, root)
+    if not errors:
+        from fidelity import fidelity_errors
+        errors.extend(fidelity_errors(state, slide_id, root))
     return errors
 
 
@@ -92,7 +101,7 @@ def preflight(data):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("fingerprint", "reconstruct-check", "preflight"))
+    parser.add_argument("command", choices=("fingerprint", "reconstruct-check", "fidelity-check", "preflight"))
     parser.add_argument("input", type=Path)
     parser.add_argument("--slide")
     args = parser.parse_args()
@@ -107,6 +116,9 @@ def main():
                 raise ValueError("--slide is required")
             if not errors and args.command == "fingerprint":
                 result["fingerprint"] = design_fingerprint(data, args.slide, args.input.parent)
+            elif not errors and args.command == "fidelity-check":
+                from fidelity import inspect_fidelity
+                errors, result['fidelity'], _ = inspect_fidelity(data, args.slide, args.input.parent)
             elif not errors:
                 errors = reconstruction_errors(data, args.slide, args.input.parent)
         result.update(ok=not errors, errors=errors)

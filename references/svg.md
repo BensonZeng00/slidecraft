@@ -12,7 +12,7 @@ font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Heiti SC", A
 
 Inspect the actual preview font; a fallback declaration does not prove availability.
 
-Prefer supplied vector artwork for complex icons. If only a screenshot exists, crop a tight icon region and trace simplified contours by color. Pixel-run vectorization is a fallback for small icons where fidelity matters: select colors, quantize, merge runs by fill, and group geometry. Keep it isolated. Do not trace the entire layout or treat scanline path count as a quality metric. Explain reduced semantic editability when relevant.
+Prefer supplied vector artwork for complex icons. If only a screenshot exists, preserve its contours and detail; do not simplify them without an explicit user request. Use a disclosed raster region when allowed, or report the limitation if faithful all-vector conversion is unavailable. Do not trace the entire layout or treat scanline path count as a quality metric. Explain reduced semantic editability when relevant.
 
 Do not embed raster images in a promised all-vector SVG. A hybrid SVG is acceptable only when the user permits it; disclose embedded raster content. This restriction applies to the SVG output, not to the separately declared image-only icons in a native PPTX.
 

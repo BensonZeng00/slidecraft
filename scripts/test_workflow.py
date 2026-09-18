@@ -8,6 +8,7 @@ import tempfile
 import unittest
 from workflow import design_fingerprint, preflight, reconstruction_errors
 from validate_state import generation_errors
+from fidelity_fixtures import install_fixture
 
 
 class WorkflowTests(unittest.TestCase):
@@ -22,6 +23,7 @@ class WorkflowTests(unittest.TestCase):
         (self.root/'brief.json').write_text('{"title":"SYNTHETIC"}')
         self.slide.update(status='reference-ready', design={
             'revision':1, 'image':'design.png', 'brief':'brief.json', 'approval':None})
+        install_fixture(self.root, self.slide)
 
     def approve(self):
         self.slide['design']['approval'] = dict(

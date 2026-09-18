@@ -9,10 +9,11 @@ Use the host's actual Python 3.11+ path. These standard-library commands are rea
 ```text
 python scripts/workflow.py fingerprint project-state.json --slide page-intro
 python scripts/workflow.py reconstruct-check project-state.json --slide page-intro
+python scripts/workflow.py fidelity-check project-state.json --slide page-intro
 python scripts/workflow.py preflight layout-metrics.json
 ```
 
-`fingerprint` supplies the current design hashes, not an approval. `reconstruct-check` combines existing outline/current-page checks, file existence, design approval and hashes; run it immediately before dependent reconstruction. The existing `validate_state.py --allow-produce` CLI now delegates to the same design gate. Budget checks still use `validate_state.py --allow-generate`. After an approved design, necessary artwork extraction may use `--purpose artwork` with `--allow-generate`; it requires a valid design and remains counted under the same cap. Default reference generation still stops at the first usable image. Do not use artwork extraction to redesign the approved composition without asking again.
+`fingerprint` supplies the current design hashes, not an approval. Prepare the locked source inventory and plan in [fidelity-contract.md](fidelity-contract.md). `fidelity-check` reports their consistency and hashes; `reconstruct-check` also checks outline/page progression and real design approval. `validate_state.py --allow-produce` delegates to the same combined gate. Budget checks still use `validate_state.py --allow-generate`; artwork extraction also requires a valid approved design and faithful plan. Do not use extraction to redraw, simplify or relayout the approved source. Default reference generation stops at the first usable image.
 
 For `preflight`, export measured geometry from the selected backend/renderer to this contract:
 
@@ -30,5 +31,5 @@ Use consistent units, the actual fonts, wrapping and insets; box dimensions mean
 - Keep `work/` candidates distinct from `delivery/`; promote only after the existing finalizer, render and evidence checks pass. On failure preserve logs and the last good deliverable. Compact summaries go to conversation; full reports stay in files. Do not repeatedly dump the same source or large tool output.
 - Prefer background plus genuinely isolated illustrations. If artwork is merely cropped from a shared source, describe it as separately cropped regions, not isolated objects. Avoid seams or baked-in duplicate text; extraction calls count toward budget.
 - Group related labels/nodes where supported and test connector behavior after grouping. Use semantic names. Do not claim label movement follows a node unless verified.
-- In a disposable app copy, test longer title, roughly 30% longer body, longer numeric values and a node move; save/reopen and inspect wrapping and attachments. Do not shorten a failing test to make it green. Fix frames or supported fitting, or disclose limits. Fitting adjustments must not change facts or silently make text tiny. Preserve the tested inputs/results. If app access is unavailable, leave these checks pending.
+- In a disposable app copy, test longer title, roughly 30% longer body, longer numeric values and a node move; save/reopen and inspect wrapping and attachments. Do not shorten a failing test to make it green. Improve invisible text-frame capacity only when the final source appearance stays unchanged; otherwise disclose the editing limit. Never redesign the final slide to pass a hypothetical edit test. Preserve the tested inputs/results. If app access is unavailable, leave these checks pending.
 - Check historical/technical imagery for misleading implications, not just text accuracy. Distinguish sourced fact from visual metaphor; label synthetic scenes and revise material misrepresentations before design approval.

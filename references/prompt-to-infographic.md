@@ -28,7 +28,7 @@ Before the first generation call, state expected reference-image count, current-
 
 Use the image-generation implementation selected through [runtime-adaptation.md](runtime-adaptation.md). Read its matching skill or tool documentation when available. The user requested an actual generated infographic before slide reconstruction. Describe the task as an infographic or educational diagram; `infographic-diagram` below is a prompt label, not a required provider API value.
 
-Use a concise, visual-first brief. Keep factual/content requirements distinct from aesthetic freedom. Apply the visual direction of a user-liked reference without copying its factual mistakes. A PPT backend's generic design preferences must not override image generation or the user's chosen style. Include only relevant fields:
+Use a concise, visual-first brief. Keep factual/content requirements distinct from aesthetic freedom. For a new design, a reference supplied only for style does not supply factual content. For reconstruction of a selected source, preserve that source instead of applying this new-design workflow. A PPT backend's generic design preferences must not override image generation or the user's chosen style. Include only relevant fields:
 
 ```text
 Use case: infographic-diagram
@@ -54,17 +54,17 @@ Generate one coherent candidate per planned slide by default. Carry the shared d
 
 ## Review, confirm, then map
 
-Apply [design-stage.md](design-stage.md) to every prompt slide. Show the inspected design and proposed corrections, freeze image and brief, ask for confirmation and end the turn. No extraction, PPT authoring or rendering before approval. Changed designs need renewed confirmation.
+Apply [design-stage.md](design-stage.md) to every prompt slide. Show the actual inspected design, freeze image and brief, ask for confirmation and end the turn. Do not attach a list of unshown corrections to be silently applied during reconstruction. No extraction, PPT authoring or rendering before approval. Changed designs need renewed confirmation.
 
 Inspect the generated image itself. Compare every planned text block and relationship with the content plan. Separate visual problems from content errors:
 
-- Typos, inaccurate numbers, or an isolated wrong arrow: use the correct planned content when reconstructing the PPTX. Report meaningful differences between the reference image and final PPTX.
+- Before selection, factual errors or wrong arrows can be repaired in the candidate image and the actual revision shown. After selection, preserve the displayed source exactly unless the user explicitly requests the scoped correction. Reporting a difference does not authorize making it.
 - Major missing sections or an unusable composition: revise the generation prompt or edit the image before reconstructing. Prefer targeted changes and preserve the correct content.
 - Repeated generation failure: after an initial attempt and up to two targeted retries by default, report the remaining limitation. Do not loop indefinitely or silently omit required sections. Honor an explicit user retry budget.
 
-Add observed layout bounds, colors, font intent, and assets to the scene. Use normalized coordinates or a documented canvas coordinate system, converting to the authoring library's units at the export boundary. OCR can aid transcription, but does not override planned wording or substitute for visual inspection.
+Add observed layout bounds, colors, font intent, and assets to the source inventory and reconstruction plan in [fidelity-contract.md](fidelity-contract.md). Use source pixels and convert to the backend's units only at export. OCR and the pre-generation prompt can aid inspection but never override visible source wording.
 
-Only after approval and a successful `workflow.py reconstruct-check`, reconstruct with the native PPTX workflow and compare the rendered slide with the approved brief and image. Exact pixel identity is not the goal; disclose approved corrections and preserve substantive meaning. Unsupported CLI checks require equivalent host checks, not silently skipping confirmation.
+Only after approval and a successful `workflow.py reconstruct-check`, reconstruct with the native PPTX workflow and compare the actual exported slide with the selected image. Faithful content, routes, composition and appearance are the goal; preserving only the meaning is insufficient. Disclose unavoidable rendering limitations and apply only explicitly scoped user changes. Unsupported CLI checks require equivalent host checks, not silently skipping them.
 
 ## Completion
 

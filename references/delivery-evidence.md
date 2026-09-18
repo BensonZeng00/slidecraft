@@ -42,10 +42,12 @@ Record actual render operations and actual visual review in `render-evidence.jso
 Preview paths are relative to the evidence file's directory and must stay within it. Record all slides. Missing review remains missing or pending; failed render remains failed. Preserve actual errors and existing useful files. User page approval is separate from an agent visual-review record and still follows the multi-slide gate.
 
 ```text
-python scripts/check_delivery.py /project/output.pptx --requirements /project/required-text.json --scene /project/scene.json --evidence /project/render-evidence.json
+python scripts/check_delivery.py /project/output.pptx --requirements /project/required-text.json --scene /project/scene.json --state /project/project-state.json --evidence /project/render-evidence.json
 ```
 
-Omit `--evidence` when none exists: the command reports `draft`. It rechecks the current PPTX and content inventory instead of trusting an old structural report, compares scene artwork, checks matching PPTX/preview hashes and per-page render/review records. Exit codes: 0 = evidence consistent and complete; 1 = draft with issues; 2 = invalid input. JSON always goes to stdout; the command does not modify inputs or project state.
+Also record each page's `source_comparison` as defined in [fidelity-contract.md](fidelity-contract.md). A successful render and generic visual review do not establish source fidelity. `--state` is required, with the same ordered pages as the delivered PPTX. It binds the selected images, locked inventories and planned changes to the actual comparison records, and checks exact native text and duplicate/additional labels against the source-derived plan.
+
+Omit `--evidence` when none exists: the command reports `draft`. It rechecks the current PPTX and content inventory instead of trusting an old structural report, compares scene artwork, checks matching PPTX/preview hashes and per-page render/review records. Exit codes: 0 = evidence consistent and complete; 1 = draft with issues; 2 = invalid input. JSON always goes to stdout; the command does not modify inputs or project state. Legacy evidence remains historical until the missing source comparison is actually performed; never manufacture it.
 
 `evidence_complete` means records are consistent, not that this script viewed images or authenticated claims. It cannot prove that a preview was actually rendered from that PPTX: the producing agent must record the real operation faithfully. A byte-identical PPTX may still require re-review after a meaningful content-plan change. Never fabricate records to silence a check.
 

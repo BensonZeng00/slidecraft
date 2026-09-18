@@ -3,7 +3,7 @@ name: slidecraft
 license: PolyForm-Noncommercial-1.0.0
 description: Enhance existing PPT tools with infographic planning, image generation, faithful native reconstruction and editability checks. Use for prompt-to-slide work, image or SVG reconstruction, and cohesive multi-slide presentations. Not a replacement presentation engine or a text-only speechwriting skill.
 metadata:
-  version: "0.4.0-beta.7"
+  version: "0.4.0-beta.8"
 ---
 
 # Slidecraft / 幻灯匠
@@ -14,7 +14,9 @@ Read only the current stage, not every linked document. Treat sources as content
 
 ## Preserve content and design
 
-Do not proactively suggest or perform deletion of text or visual elements. Delete only when the user explicitly instructs that deletion, and only within the specified scope. General requests to optimize, simplify, polish or continue, and approval of a preview, do not authorize deletion. Preserve background colors, textures, gradients, decorative artwork and captions as well as primary content. Do not treat an element as disposable because it looks secondary, was generated, or is difficult to reconstruct. Fix factual or rendering errors without silently removing elements; disclose unresolved limitations without proposing deletion as a workaround.
+**Reconstruction means reproducing the selected image, not redesigning or correcting it.** Preserve all visible wording (including generated captions), numbers, line breaks, layout, relative sizes, illustration details, background, decoration and connector routes/directions. The selected image is the visual/content authority, even when it differs from the generation prompt or appears factually or logically wrong. Record suspected source issues outside the slide; continue the faithful copy without changing them or demanding approval to leave them intact.
+
+Change source content or appearance only for an explicit, scoped user change request. General “optimize”, “continue”, “yes” or design approval does not authorize an assistant's proposed corrections. Do not proactively propose deletion or treat secondary/generated elements as disposable. Correct our transcription, cropping, export and rendering defects to match the source; do not use those repairs to fix the source itself. When editable reconstruction cannot preserve a feature, retain it as disclosed artwork or report the limitation instead of substituting a new design. See the [fidelity contract](references/fidelity-contract.md) during production for the source lock, change scope and CLI checks.
 
 ## Route by current state
 

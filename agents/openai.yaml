@@ -1,4 +1,4 @@
 interface:
   display_name: "幻灯匠"
   short_description: "Preview and approve designs before building editable slides"
-  default_prompt: "使用 $slidecraft，先生成设计图让我确认，再复刻为可编辑 PPT；优先用已有工具的 CLI 完成可重复检查，多页先确认大纲，再按设计图和成品逐页确认。"
+  default_prompt: "使用 $slidecraft，先生成设计图让我确认，再忠实复刻为可编辑 PPT。保留原图文字、布局、连线、装饰与插画，不擅自纠错或重新设计；仅执行我明确指定的改动。用 CLI 校验原图清单与复刻计划，多页先确认大纲，再逐页确认。"

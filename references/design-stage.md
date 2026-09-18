@@ -32,15 +32,15 @@ Keep one writer; persist state atomically. Record unique attempt ID, slide ID an
 
 ## Inspect, save, ask
 
-Inspect the returned image and actual dimensions: required content, arrows, legibility and misleading imagery. Preserve proportions. Correct an unusable design within budget; stop on exhausted limits/repeated permission failure. Explain small factual or transcription corrections planned for editable text instead of unnecessarily regenerating. Do not include unsolicited deletions in proposed corrections or preview commentary, including suggestions to remove generated captions or decoration for a cleaner look. Follow the preservation rule in SKILL.md.
+Inspect the returned image and actual dimensions: required content, arrows, legibility and misleading imagery. Before approval, revise an unusable candidate within budget and show the actual revised image; stop on exhausted limits/repeated permission failure. Do not promise to silently fix wording, arrows or decoration during later PPT production. If there is a source concern, describe it separately without treating it as a planned correction. Once the user selects a design, reproduce what they saw. Follow the preservation rule in SKILL.md.
 
-Save a versioned image and frozen reviewed brief within the project. The brief includes content, chosen design and proposed corrections; mutable build metadata stays elsewhere. On the existing slide set `status: reference-ready` and:
+Save a versioned image and frozen reviewed brief within the project. The brief includes content, chosen design and any unresolved observations, not implicitly authorized corrections; mutable build metadata stays elsewhere. On the existing slide set `status: reference-ready` and:
 
 ```json
 {"design":{"revision":1,"image":"design/page-01-v1.png","brief":"design/page-01-v1.json","approval":null}}
 ```
 
-Show the image as a design preview, not an editable PPT, identify corrections and ask: “这是设计图 v1，确认后我再复刻为可编辑 PPT；需要修改哪里？” **End the turn.** No extraction, PPT authoring/rendering or future-page production while waiting.
+Show the image as a design preview, not an editable PPT, and ask: “这是设计图 v1，确认后我会按原图复刻为可编辑 PPT；需要修改哪里？” **End the turn.** No extraction, PPT authoring/rendering or future-page production while waiting. Approval authorizes faithful copying of this displayed version, not unshown corrections mentioned by the assistant.
 
 After explicit approval, obtain current hashes:
 
